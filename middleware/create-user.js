@@ -10,6 +10,8 @@ const createUser = async (req, res) => {
     const username = req.body.username || null;
     const emp_no = req.body.emp_no || null;
     let response = {};
+    console.log(username);
+    console.log(emp_no);
     const params = {
         UserPoolId: 'us-east-1_EJZvOmHNo', /* required */
         Username: username, /* required */
@@ -18,7 +20,7 @@ const createUser = async (req, res) => {
         ],
         ForceAliasCreation: false,
         MessageAction: 'SUPPRESS',
-        TemporaryPassword: 'TempP@55word', // 'Te5tPa%%1'
+        TemporaryPassword: 'TempP@55word', // 'Te5tPa%%!'
         UserAttributes: [
           {
             Name: 'name', /* required */
@@ -39,28 +41,15 @@ const createUser = async (req, res) => {
     try {
       const data = await cognito.adminCreateUser(params).promise();
       console.log(data);
-      const res = await query.user.createUser(emp_no, username);
-      console.log(res);
+      const user = await query.user.createUser(emp_no, username);
+      console.log(user);
+      res.json({...data,...user.dataValues})
     }
     catch (err) {
       console.log(err);
+      res.json({'message': 'Error creating user'});
     }
 
-//     if (empNo) {
-//         try {
-//             let salaries = await query.employees.getAllSalaries(empNo);
-//             salaries = salaries.map(salary => salary.dataValues);
-//             response.body = {
-//                 salaries
-//             }
-//         }
-//         catch (err) {
-//         };
-//     }
-//     else {
-//         response.body = { 'message': 'empId is null' };
-//     }
-//     res.json(response.body);
    };
 
 module.exports = createUser;

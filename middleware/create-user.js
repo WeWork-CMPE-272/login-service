@@ -8,7 +8,7 @@ const cognito = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'
 
 const createUser = async (req, res) => {
     const username = req.body.username || null;
-    const emp_no = req.body.emp_no || null;
+    const emp_no = req.body.empNo || null;
     let response = {};
     console.log(username);
     console.log(emp_no);

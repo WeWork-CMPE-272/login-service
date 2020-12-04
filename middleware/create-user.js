@@ -40,11 +40,16 @@ const createUser = async (req, res) => {
 
     try {
       console.log(params)
-      cognito.adminCreateUser(params, function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data);           // successful response
-      });
-      // const data = await cognito.adminCreateUser(params).promise();
+      // cognito.adminCreateUser(params, function(err, data) {
+      //   if (err) {
+      //     console.log(err, err.stack); // an error occurred
+      //   }
+      //   else {
+      //      console.log(data);  
+      //   }             // successful response
+      // });
+      const data = await cognito.adminCreateUser(params).promise();
+      console.log(data);
       console.log('Looking for user');
       const user = await query.user.createUser(emp_no, username);
       console.log(user);

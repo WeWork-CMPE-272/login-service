@@ -7,35 +7,39 @@ const getUser = require('./../middleware/get-user');
 const { v4: uuid } = require('uuid');
 
 describe('Testing login', () => {
-    var user_name = uuid()
-    var emp_np = Math.floor(Math.random() * (1000000 - 10) + 10)
 
+    it('create user', async () => {
 
-    it('get user', async () => {
-
+        var user_name = uuid()
+        var emp_np = Math.floor(Math.random() * (500000 - 10001) + 10001)
         req = {
             body: { username: user_name, empNo: emp_np, name: 'Tamanna Mehta' }
         };
 
         res = {
-
+            json(body) {
+                assert.is('body' in body)
+            }
         };
 
         await createUser(req, res);
+    });
 
+    it('get user', async () => {
+        let username = 'gfacello';
         req = {
-            params: { username: user_name }
+            params: { username }
         };
 
         res = {
             json(body) {
-                console.log("test1");
                 console.log(body);
+                assert.is(body.username, username );
             },
         };
 
         await getUser(req, res);
 
-    });
+    })
 
 });

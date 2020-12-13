@@ -50,12 +50,6 @@ const createUser = async (req, res) => {
         res.json({ 'body' : {...data, ...user.dataValues }})
       }             // successful response
     });
-    // const data = await cognito.adminCreateUser(params).promise();
-    // console.log(data);
-    // console.log('Looking for user');
-    // const user = await query.user.createUser(emp_no, username);
-    // console.log(user);
-    // res.json({ ...data, ...user.dataValues })
   }
   catch (err) {
     res.json({ 'message': 'Error creating user' });

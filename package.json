@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "debug": "NODE_ENV=development nodemon app.js | bunyan",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +14,15 @@
     "aws-sdk": "^2.796.0",
     "body-parser": "^1.19.0",
     "bunyan": "^1.8.14",
+    "clutch-assert": "^4.2.0",
     "convict": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "lodash": "^4.17.20",
+    "mocha": "^8.2.1",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
+    "nock": "^13.0.5",
     "nodemon": "^2.0.4",
     "pretty": "^2.0.0",
     "request": "^2.88.2",
